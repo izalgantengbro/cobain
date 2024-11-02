@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data Divisi</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-content">
+        <header>
+            <h1>Tambah Data Divisi</h1>
+        </header>
+        <div class="content">
+            <!-- Form tambah data divisi -->
+            <form id="formTambahDivisi">
+                <label for="kodeDivisi">Kode Divisi:</label>
+                <input type="text" id="kodeDivisi" name="kodeDivisi" readonly>
+                
+                <label for="namaDivisi">Nama Divisi:</label>
+                <input type="text" id="namaDivisi" name="namaDivisi" required>
+                
+                <button type="button" onclick="simpanDataDivisi()">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk mengisi kode divisi secara otomatis
+        function generateKodeDivisi() {
+            var dataDivisi = JSON.parse(localStorage.getItem('dataDivisi')) || [];
+            return 'DV' + (dataDivisi.length + 1).toString().padStart(3, '0');
+        }
+
+        // Tampilkan kode divisi otomatis saat halaman dimuat
+        document.getElementById("kodeDivisi").value = generateKodeDivisi();
+
+        // Fungsi untuk menyimpan data divisi
+        function simpanDataDivisi() {
+            var kodeDivisi = document.getElementById("kodeDivisi").value;
+            var namaDivisi = document.getElementById("namaDivisi").value;
+
+            // Ambil data divisi dari localStorage
+            var dataDivisi = JSON.parse(localStorage.getItem('dataDivisi')) || [];
+
+            // Tambah data baru ke array
+            dataDivisi.push({ kodeDivisi, namaDivisi });
+
+            // Simpan kembali ke localStorage
+            localStorage.setItem('dataDivisi', JSON.stringify(dataDivisi));
+
+            // Arahkan ke halaman divisi
+            window.location.href = 'divisi.html';
+        }
+    </script>
+</body>
+</html>

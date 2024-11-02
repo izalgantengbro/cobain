@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f2f5;
+            margin: 0;
+        }
+        .login-container {
+            width: 300px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .login-container img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        .login-container h2 {
+            margin: 0 0 20px;
+            color: #333;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .login-container button:hover {
+            background: #45a049;
+        }
+        .login-container .bypass {
+            background: #4285F4;
+            margin-top: 10px;
+        }
+        .login-container .bypass:hover {
+            background: #357ae8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <img src="img/starboy.png" alt="Logo Perusahaan">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button type="button" onclick="login()">Login</button>
+        <button type="button" class="bypass" onclick="bypassLogin()">Masuk Tanpa Login</button>
+    </form>
+</div>
+
+<script>
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username === 'afrizal' && password === '221011401828') {
+            window.location.href = 'dashboard.html';
+        } else {
+            alert('Username atau Password salah');
+        }
+    }
+
+    function bypassLogin() {
+        window.location.href = 'dashboard.html';
+    }
+</script>
+
+</body>
+</html>

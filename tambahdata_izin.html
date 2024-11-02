@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data Izin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="main-content">
+        <header>
+            <h1>Tambah Data Izin</h1>
+        </header>
+        <div class="content">
+            <form id="formIzin">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" required>
+
+                <label for="tanggal">Tanggal:</label>
+                <input type="date" id="tanggal" required>
+
+                <label for="jam">Jam:</label>
+                <input type="time" id="jam" required>
+
+                <label for="keterangan">Keterangan:</label>
+                <textarea id="keterangan" required></textarea>
+
+                <button type="submit">Simpan Data</button>
+                <a href="izin.html" class="button-cancel">Batal</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formIzin').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var nama = document.getElementById('nama').value;
+            var tanggal = document.getElementById('tanggal').value;
+            var jam = document.getElementById('jam').value;
+            var keterangan = document.getElementById('keterangan').value;
+
+            var dataIzin = JSON.parse(localStorage.getItem('dataIzin')) || [];
+            dataIzin.push({ nama: nama, tanggal: tanggal, jam: jam, keterangan: keterangan });
+
+            localStorage.setItem('dataIzin', JSON.stringify(dataIzin));
+
+            // Redirect to izin.html after saving
+            window.location.href = 'izin.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data Absensi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="main-content">
+        <header>
+            <h1>Tambah Data Absensi</h1>
+        </header>
+        <div class="content">
+            <form id="attendanceForm">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" required placeholder="Masukkan Nama">
+
+                <label for="tanggal">Tanggal:</label>
+                <input type="date" id="tanggal" required>
+
+                <label for="jamAbsen">Jam Absen:</label>
+                <input type="time" id="jamAbsen" required>
+
+                <label for="jamKeluar">Jam Keluar:</label>
+                <input type="time" id="jamKeluar" required>
+
+                <button type="submit">Simpan Data</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('attendanceForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah pengiriman form default
+            
+            // Mengambil nilai dari form
+            const nama = document.getElementById('nama').value;
+            const tanggal = document.getElementById('tanggal').value;
+            const jamAbsen = document.getElementById('jamAbsen').value;
+            const jamKeluar = document.getElementById('jamKeluar').value;
+
+            // Membuat objek absensi
+            const absensi = {
+                nama: nama,
+                tanggal: tanggal,
+                jamAbsen: jamAbsen,
+                jamKeluar: jamKeluar
+            };
+
+            // Mendapatkan data absensi yang sudah ada di localStorage
+            let dataAbsensi = JSON.parse(localStorage.getItem('dataAbsensi')) || [];
+            dataAbsensi.push(absensi); // Menambahkan data baru ke array
+            localStorage.setItem('dataAbsensi', JSON.stringify(dataAbsensi)); // Menyimpan kembali ke localStorage
+
+            // Menampilkan alert sukses
+            alert("Data absensi berhasil disimpan!");
+            // Mengarahkan kembali ke halaman absensi
+            window.location.href = "absensi.html";
+        });
+    </script>
+</body>
+</html>

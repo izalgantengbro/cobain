@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data Karyawan</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-content">
+        <header>
+            <h1>Tambah Data Karyawan</h1>
+        </header>
+        <div class="content">
+            <!-- Form tambah data karyawan -->
+            <form id="formTambahKaryawan">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="alamat">Alamat:</label>
+                <input type="text" id="alamat" name="alamat" required>
+                
+                <label for="jabatan">Jabatan:</label>
+                <input type="text" id="jabatan" name="jabatan" required>
+                
+                <button type="button" onclick="simpanDataKaryawan()">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function simpanDataKaryawan() {
+            var nama = document.getElementById("nama").value;
+            var email = document.getElementById("email").value;
+            var alamat = document.getElementById("alamat").value;
+            var jabatan = document.getElementById("jabatan").value;
+
+            // Ambil data karyawan dari localStorage
+            var dataKaryawan = JSON.parse(localStorage.getItem('dataKaryawan')) || [];
+
+            // Generate kode unik untuk karyawan baru
+            var kode = 'KR' + (dataKaryawan.length + 1).toString().padStart(3, '0');
+
+            // Tambah data baru ke array
+            dataKaryawan.push({ kode, nama, email, alamat, jabatan });
+
+            // Simpan kembali ke localStorage
+            localStorage.setItem('dataKaryawan', JSON.stringify(dataKaryawan));
+
+            // Arahkan ke halaman data karyawan
+            window.location.href = 'datakaryawan.html';
+        }
+    </script>
+</body>
+</html>
